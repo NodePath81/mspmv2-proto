@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package aggregator;
+
+option go_package = "github.com/NodePath81/mspm/proto/generated/generated_go";
+
+service AggregatorService {
+    rpc NewImage (NewImageRequest) returns (NewImageResponse);
+}
+
+message NewImageRequest {
+    string user_id = 1;
+    optional strng catalog = 2;
+    repeated string tags = 2;
+}
+
+message NewImageResponse {
+    string image_id = 1;
+    string task_id = 2;
+}

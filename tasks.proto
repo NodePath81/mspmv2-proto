@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package tasks;
+
+option go_package = "github.com/NodePath81/mspm/proto/generated/generated_go";
+
+import "model.proto";
+
+message TaskImageUploaded{
+    string task_id = 1;
+    string user_id = 2;
+    string image_id = 3;
+    string file_name = 4;
+    repeated string user_specified_tag = 5;
+    optional string category = 6;
+    int64 uploaded_at = 7;
+}
+
+message TaskAddImageEmbedding{
+    string task_id = 1;
+    string image_id = 2;
+    repeated float embedding = 3;
+}
+
+message TaskAddThumbnail{
+    string task_id = 1;
+    string image_id = 2;
+}
+
+message TaskAddTags{
+    string task_id = 1;
+    string image_id = 2;
+    repeated string auto_generated_tags = 3;
+}
+
+message TaskAddMetadata {
+    string task_id = 1;
+    model.ImageMetadata metadata = 2;
+}

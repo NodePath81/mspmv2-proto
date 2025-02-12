@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "github.com/NodePath81/mspm/generated/generated_go";
+
+service UserService {
+    rpc RegisterUser (RegisterUserRequest) returns (RegisterUserResponse);
+    rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
+    rpc Authenticate (AuthenticateUserRequest) returns (AuthenticateUserResponse);
+    rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
+}
+
+message UserRequest {
+    string username = 1;
+    string password = 2;
+    optional string user_id = 3;
+}
+
+message AuthenToken {
+    string token = 1;
+}
+
+message RegisterUserRequest {
+    UserRequest user = 1;
+}
+
+message RegisterUserResponse {
+    bool success = 1;
+}
+
+message LoginUserRequest {
+    UserRequest user = 1;
+}
+
+message LoginUserResponse {
+    bool success = 1;
+    AuthenToken token = 2;
+}
+
+message AuthenticateUserRequest {
+    AuthenToken token = 1;
+}
+
+message AuthenticateUserResponse {
+    bool success = 1;
+    string user_id = 2;
+}
+
+message UpdateUserRequest {
+    UserRequest user = 1;
+    string new_password = 2;
+}
+
+message UpdateUserResponse {
+    bool success = 1;
+}
