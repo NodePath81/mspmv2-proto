@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "github.com/NodePath81/mspmv2-proto/user";
+
+// Basic user account information
+message Account {
+    string user_id = 1;
+    string username = 2;
+}
+
+// Registration
+message RegisterUserRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message RegisterUserResponse {
+    Account account = 1;
+    string authentication_token = 2;
+}
+
+// Login
+message LoginUserRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginUserResponse {
+    string authentication_token = 1;
+    Account account = 2;
+}
+
+// User Update
+message UpdateUserRequest {
+    string user_id = 1;
+    string old_password = 2;
+    string new_password = 3;
+}
+
+message UpdateUserResponse {
+    bool success = 1;
+}
+
+// User Disable
+message DisableUserRequest {
+    string user_id = 1;
+}
+
+message DisableUserResponse {
+    bool success = 1;
+}
+
+// Authorization
+message AuthorizeRequest {
+    string authentication_token = 1;
+}
+
+message AuthorizeResponse {
+    string authorization_token = 1;
+}
+
+service UserService{
+    rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
+    rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
+
+    // Update user information
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+
+    // Disable user
+    rpc DisableUser(DisableUserRequest) returns (DisableUserResponse);
+
+    // Return authorization token
+    rpc Authorize(AuthorizeRequest) returns (AuthorizeResponse);
+}
+
+
+

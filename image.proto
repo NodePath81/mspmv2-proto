@@ -1,19 +1,8 @@
 syntax = "proto3";
 
-package model;
+package image;
 
-option go_package = "github.com/NodePath81/mspm/proto/generated/generated_go";
-
-message Account{
-    string user_id = 1;
-    string username = 2 ;
-    string password = 3;
-}
-
-message TokenInfo{
-    string user_id = 1;
-    uint32 token_version = 3;
-}
+option go_package = "github.com/NodePath81/mspmv2-proto/image";
 
 message ImageTags{
     repeated string user_specified_tags = 1;

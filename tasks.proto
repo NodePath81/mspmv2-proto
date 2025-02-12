@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package tasks;
 
-option go_package = "github.com/NodePath81/mspm/proto/generated/generated_go";
+option go_package = "github.com/NodePath81/mspmv2-proto/tasks";
 
-import "model.proto";
+import "image.proto";
 
 message TaskImageUploaded{
     string task_id = 1;
@@ -16,24 +16,19 @@ message TaskImageUploaded{
     int64 uploaded_at = 7;
 }
 
-message TaskAddImageEmbedding{
+message TaskImageEmbeddingCreated{
     string task_id = 1;
     string image_id = 2;
     repeated float embedding = 3;
 }
 
-message TaskAddThumbnail{
+message TaskThumbnailCreated{
     string task_id = 1;
     string image_id = 2;
 }
 
-message TaskAddTags{
+message TaskTagsCreated{
     string task_id = 1;
     string image_id = 2;
     repeated string auto_generated_tags = 3;
-}
-
-message TaskAddMetadata {
-    string task_id = 1;
-    model.ImageMetadata metadata = 2;
 }

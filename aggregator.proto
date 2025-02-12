@@ -2,19 +2,19 @@ syntax = "proto3";
 
 package aggregator;
 
-option go_package = "github.com/NodePath81/mspm/proto/generated/generated_go";
+option go_package = "github.com/NodePath81/mspmv2-proto/aggregator";
 
 service AggregatorService {
-    rpc NewImage (NewImageRequest) returns (NewImageResponse);
+    rpc AddImageMetadata (AddImageMetadataRequest) returns (AddImageMetadataResponse);
 }
 
-message NewImageRequest {
-    string user_id = 1;
-    optional strng catalog = 2;
-    repeated string tags = 2;
+// Trigger image-metadata-service to fetch Task* from redis store of aggregator
+message AddImageMetadataRequest {
+    string task_id = 1;
+    string image_id = 2;
 }
 
-message NewImageResponse {
-    string image_id = 1;
-    string task_id = 2;
+// Return the task id
+message AddImageMetadataResponse {
+    string task_id = 1;
 }
